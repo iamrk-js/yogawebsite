@@ -29,7 +29,7 @@ export class AuthComponent implements OnInit {
     ).then((userCredential) => {
       // Handle successful signup
       const uid = userCredential.user?.uid;
-      this._snackbar.openSnackbar(`Successfully Created account as a ${userRole.role}`, 'close');
+      this._snackbar.openSnackbar(`Successfully Created account as a ${userRole}`, 'close');
       this.allreadyHaveAccount = !this.allreadyHaveAccount;
       this._firestore.collection('users').doc(uid).set({
         role: userRole
