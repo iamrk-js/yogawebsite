@@ -1,0 +1,112 @@
+<div class="row">
+    <div class="col-md-6 offset-md-3">
+        <mat-card>
+            <mat-card-title class="mb-4"  *ngIf="allreadyHaveAccount" >
+                Login
+            </mat-card-title>
+            <mat-card-title class="mb-4"  *ngIf="!allreadyHaveAccount" >
+                Sign Up
+            </mat-card-title>
+            <mat-card-content>
+                <ng-container *ngIf="allreadyHaveAccount" >
+                    <form class="loginForm"(ngSubmit)="onLogin(loginForm)" #loginForm="ngForm">
+                        <mat-form-field>
+                            <input type="text" #email="ngModel"
+                                pattern="^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$" minlength="5"
+                                 matInput
+                                ngModel name="email" id="" placeholder="Email" required
+                                >
+                            <mat-error *ngIf="email.errors?.['required']">
+                                This field is Mandatory.
+                            </mat-error>
+                            <mat-error *ngIf="email.errors?.['minlength']">
+                                The minimum length of email should be {{email.getError('minlength').requiredLength | json}}
+                                , and current length is {{email.getError('minlength').actualLength | json}}
+                            </mat-error>
+                            <!-- <mat-error *ngIf="email.errors?.['email']">
+                                Please Enter Valid Email Address.
+                             </mat-error> -->
+                            <mat-error *ngIf="email.errors?.['pattern']">
+                                Please Enter Valid Email Address
+                            </mat-error>
+                        </mat-form-field>
+                        <mat-form-field>
+                            <input type="password" matInput ngModel 
+                            #password="ngModel" name="password" id=""
+                             required
+                             passwordStrength
+                                placeholder="password">
+                                <mat-error *ngIf="password.errors?.['required']">
+                                    This field is Mandatory
+                                </mat-error>
+                                <mat-error *ngIf="password.errors?.['passwordStrength']">
+                                    Password Must contain at least One Uppercase, One Lowercase and one Number
+                                </mat-error>
+                        </mat-form-field>
+                       
+                        <button mat-raised-button type="submit" color="primary">
+                            Login
+                        </button>
+                    </form>
+                    <button mat-button color="primary"
+                    (click)="allreadyHaveAccount = !allreadyHaveAccount"
+                    >Dont Have Account</button>
+                </ng-container>
+               <ng-container *ngIf="!allreadyHaveAccount">
+                <form class="loginForm"
+                #signinForm = 'ngForm'
+                (ngSubmit)="onSignUp(signinForm) "
+                 #signUpForm="ngForm">
+                    <mat-form-field>
+                        <input type="text" #signInemail="ngModel"
+                            pattern="^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$" minlength="5"
+                             matInput
+                            ngModel name="email" id="" placeholder="Email" required
+                            >
+                        <mat-error *ngIf="signInemail.errors?.['required']">
+                            This field is Mandatory.
+                        </mat-error>
+                        <mat-error *ngIf="signInemail.errors?.['minlength']">
+                            The minimum length of email should be {{signInemail.getError('minlength').requiredLength | json}}
+                            , and current length is {{signInemail.getError('minlength').actualLength | json}}
+                        </mat-error>
+                        <!-- <mat-error *ngIf="email.errors?.['email']">
+                            Please Enter Valid Email Address.
+                         </mat-error> -->
+                        <mat-error *ngIf="signInemail.errors?.['pattern']">
+                            Please Enter Valid Email Address
+                        </mat-error>
+                    </mat-form-field>
+                    <mat-form-field>
+                        <input type="password" matInput ngModel 
+                        #signInpassword="ngModel" name="password" id=""
+                         required
+                         passwordStrength
+                            placeholder="password">
+                            <mat-error *ngIf="signInpassword.errors?.['required']">
+                                This field is Mandatory
+                            </mat-error>
+                            <mat-error *ngIf="signInpassword.errors?.['passwordStrength']">
+                                Password Must contain at least One Uppercase, One Lowercase and one Number
+                            </mat-error>
+                    </mat-form-field>
+                    <mat-form-field>
+                        <mat-select name="userRole" ngModel required>
+                            <mat-option value="">Select a role</mat-option>
+                            <mat-option value="teacher">Teacher</mat-option>
+                            <mat-option value="student">Student</mat-option>
+                          </mat-select>
+                    </mat-form-field>
+                    <button mat-raised-button type="submit" color="primary">
+                        Create Account
+                    </button>
+                </form>
+                <button mat-button color="primary"
+                (click)="allreadyHaveAccount = !allreadyHaveAccount"
+                >All ready Have Account</button>
+               </ng-container>
+            </mat-card-content>
+
+        </mat-card>
+    </div>
+</div>

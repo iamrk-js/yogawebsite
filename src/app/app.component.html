@@ -1,0 +1,68 @@
+<mat-sidenav-container fullscreen>
+  <mat-sidenav #sidenav>
+    <mat-nav-list (click)="sidenav.close()">
+      <a mat-list-item routerLink="/courses">
+        <mat-icon>
+          library_books
+        </mat-icon>
+        <span>
+          Yogas
+        </span>
+      </a>
+      <a mat-list-item routerLink="/about">
+        <mat-icon>
+          question_answer
+        </mat-icon>
+        <span>
+          About
+        </span>
+      </a>
+     
+      <a mat-list-item routerLink="/">
+        <mat-icon>
+          account_circle
+        </mat-icon>
+        <span>
+          Log Out
+        </span>
+      </a>
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-toolbar color="primary">
+  <div>
+    <button mat-icon-button (click)="sidenav.open()">
+      <mat-icon>
+        menu
+      </mat-icon>
+     
+    </button>
+  </div>
+  
+<div>
+  <a mat-button href="javascript:;" [matMenuTriggerFor]="dropDown">
+    Dropdown
+  </a>
+  <mat-menu #dropDown>
+    <button mat-menu-item routerLink="/courses">
+      Courses
+    </button>
+    <button mat-menu-item routerLink="/about">
+      About
+    </button>
+  </mat-menu>
+  
+  <a routerLink="/" mat-button>
+    <mat-icon>account_circle</mat-icon> 
+    Log Out
+  </a>
+</div>
+ 
+  </mat-toolbar>
+  <div class="container mt-4">
+    <div class="row">
+      <div class="col-sm-12">
+        <router-outlet></router-outlet>
+      </div>
+    </div>
+  </div>
+</mat-sidenav-container>
