@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { CanActivate, Router } from '@angular/router';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
-import { Observable } from 'rxjs';
+import { Observable, from } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 @Injectable({
@@ -16,7 +16,7 @@ export class AuthGuard implements CanActivate {
         if (user) {
           return true; // User is authenticated, allow access
         } else {
-          this.router.navigate(['/login']);
+          this.router.navigate(['/']);
           return false; // User is not authenticated, redirect to login page
         }
       })

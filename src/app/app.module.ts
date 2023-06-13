@@ -14,6 +14,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { YogaDashboardComponent } from './components/yoga-dashboard/yoga-dashboard.component';
 import { StudentdashboardComponent } from './components/studentdashboard/studentdashboard.component';
 import { TeacherdashboardComponent } from './components/teacherdashboard/teacherdashboard.component';
+import { AboutComponent } from './components/about/about.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { TeacherdashboardComponent } from './components/teacherdashboard/teacher
     AuthComponent,
     YogaDashboardComponent,
     StudentdashboardComponent,
-    TeacherdashboardComponent
+    TeacherdashboardComponent,
+    AboutComponent
   ],
   imports: [
     BrowserModule,

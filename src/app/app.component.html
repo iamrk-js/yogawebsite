@@ -1,12 +1,12 @@
 <mat-sidenav-container fullscreen>
-  <mat-sidenav #sidenav>
+  <mat-sidenav #sidenav  *ngIf="isLogedIn">
     <mat-nav-list (click)="sidenav.close()">
-      <a mat-list-item routerLink="/courses">
+      <a mat-list-item >
         <mat-icon>
           library_books
         </mat-icon>
         <span>
-          Yogas
+          Courses
         </span>
       </a>
       <a mat-list-item routerLink="/about">
@@ -28,9 +28,9 @@
       </a>
     </mat-nav-list>
   </mat-sidenav>
-  <mat-toolbar color="primary">
+  <mat-toolbar color="primary"  *ngIf="isLogedIn">
   <div>
-    <button mat-icon-button (click)="sidenav.open()">
+    <button mat-icon-button  (click)="toggleSideNav()">
       <mat-icon>
         menu
       </mat-icon>
@@ -43,7 +43,7 @@
     Dropdown
   </a>
   <mat-menu #dropDown>
-    <button mat-menu-item routerLink="/courses">
+    <button mat-menu-item routerLink="/teacherDashboard">
       Courses
     </button>
     <button mat-menu-item routerLink="/about">
@@ -51,7 +51,7 @@
     </button>
   </mat-menu>
   
-  <a routerLink="/" mat-button>
+  <a routerLink="/" mat-button (click)="logOut()">
     <mat-icon>account_circle</mat-icon> 
     Log Out
   </a>
