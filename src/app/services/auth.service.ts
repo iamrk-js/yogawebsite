@@ -30,6 +30,7 @@ export class AuthService {
   }
 
   logout() {
+    this.logInStatus.next(false);
     return this.afAuth.signOut()
   }
 }
