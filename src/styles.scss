@@ -4,32 +4,11 @@ html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 
-@import './assets/button';
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;700&display=swap');
 
-body{
-    height: 100vh;
-    position: relative;
-    background-position: center;
-    background-attachment: fixed;
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-image: url(https://img2.hocoos.com/cache/img-pack/234/w-1920/h-720/ww-1920/wh-720/img-pack/234/pexels-cottonbro-4325470.jpg);
-    &::after{
-        content: '';
-        position: absolute;
-        left: 0;
-        top: 0;
-        width: 100%;
-        height: 100%;
-        background-color: rgba(0,0,0,.6);
-    }
-}
+@import './assets/abstract/var';
+@import './assets/abstract/base';
+@import './assets/abstract/typo';
+@import './assets/components/button';
 
-.mat-drawer-container {
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    position: absolute;
-    background: transparent;
-}
+

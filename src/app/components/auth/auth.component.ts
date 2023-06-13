@@ -25,8 +25,8 @@ export class AuthComponent implements OnInit {
   }
 
   onSignUp(f: NgForm) {
-    console.log(f.value)
-    let { email, password, userRole } = f.value;
+    if(f.valid){
+      let { email, password, userRole } = f.value;
     this._authService.signUp(email, password)
       .subscribe(userCredential => {
         // Handle successful signup
@@ -37,31 +37,35 @@ export class AuthComponent implements OnInit {
           role: userRole
         });
       })
+    }
   }
   onLogin(f: NgForm) {
-    let { email, password } = f.value;
-    this._authService.onLogin(email, password)
-      .then(userCredential => {
-        // Handle successful login
-        console.log(userCredential)
-        const uid = userCredential.user?.uid;
-        this._firestore.collection('users').doc(uid).get().subscribe((userDoc) => {
-          const userRole: any = userDoc.data();
-          // Handle successful login and access user role
-          console.log(userRole);
-          if (userRole.role.includes('teacher')) {
-            this._router.navigate(['/teacherDashboard'])
-          } else {
-            this._router.navigate(['/studentsDashboard'])
-          }
-          this._snackbar.openSnackbar(`Successfully Login as a ${userRole.role}`, 'close')
-        });
-        this._authService.logInStatus.next(true)
-      })
-      .catch(err => {
-        this._snackbar.openSnackbar(err.message, "close")
-      })
-   
+    if (f.valid) {
+      let { email, password } = f.value;
+      this._authService.onLogin(email, password)
+        .then(userCredential => {
+          // Handle successful login
+          console.log(userCredential)
+          const uid = userCredential.user?.uid;
+          this._firestore.collection('users').doc(uid).get().subscribe((userDoc) => {
+            const userRole: any = userDoc.data();
+            // Handle successful login and access user role
+            console.log(userRole);
+            localStorage.setItem("userRole", userRole.role)
+            if (userRole.role.includes('teacher')) {
+              this._router.navigate(['/teacherDashboard'])
+            } else {
+              this._router.navigate(['/studentsDashboard'])
+            }
+            this._snackbar.openSnackbar(`Successfully Login as a ${userRole.role}`, 'close')
+          });
+          this._authService.logInStatus.next(true)
+        })
+        .catch(err => {
+          this._snackbar.openSnackbar(err.message, "close")
+        })
+    }
+
   }
 }
 

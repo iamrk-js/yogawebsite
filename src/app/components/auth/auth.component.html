@@ -45,7 +45,9 @@
                                     </mat-error>
                             </mat-form-field>
                            
-                            <button mat-raised-button type="submit" color="primary">
+                            <button 
+                            [disabled]="loginForm.invalid"
+                            mat-raised-button type="submit" color="primary">
                                 Login
                             </button>
                         </form>
@@ -98,7 +100,9 @@
                                 <mat-option value="student">Student</mat-option>
                               </mat-select>
                         </mat-form-field>
-                        <button mat-raised-button type="submit" color="primary">
+                        <button
+                        [disabled]="signinForm.invalid"
+                        mat-raised-button type="submit" color="primary">
                             Create Account
                         </button>
                     </form>
