@@ -17,16 +17,10 @@ export class AuthService {
   onLogin(email: string, password: string): Promise<any> {
     return (this.afAuth.signInWithEmailAndPassword(email, password))
   }
-  signUp(email: string, password: string): Observable<any> {
-    return from(this.afAuth.createUserWithEmailAndPassword(
+  signUp(email: string, password: string): Promise<any> {
+    return this.afAuth.createUserWithEmailAndPassword(
       email as string, password as string
-    ))
-      .pipe(
-        catchError(err => {
-          this._snakBar.openSnackbar(err, "close")
-          return of(err)
-        })
-      )
+    )
   }
 
   logout() {

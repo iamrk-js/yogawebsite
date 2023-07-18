@@ -13,7 +13,8 @@
                         <form class="loginForm"(ngSubmit)="onLogin(loginForm)" #loginForm="ngForm">
                             <mat-form-field>
                                 <input type="text" #email="ngModel"
-                                    pattern="^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$" minlength="5"
+                                    pattern="^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$"
+                                     minlength="5"
                                      matInput
                                     ngModel name="email" id="" placeholder="Email" required
                                     >

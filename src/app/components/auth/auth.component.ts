@@ -25,18 +25,23 @@ export class AuthComponent implements OnInit {
   }
 
   onSignUp(f: NgForm) {
-    if(f.valid){
+    if (f.valid) {
       let { email, password, userRole } = f.value;
-    this._authService.signUp(email, password)
-      .subscribe(userCredential => {
-        // Handle successful signup
-        const uid = userCredential.user?.uid;
-        this._snackbar.openSnackbar(`Successfully Created account as a ${userRole}`, 'close');
-        this.allreadyHaveAccount = !this.allreadyHaveAccount;
-        this._firestore.collection('users').doc(uid).set({
-          role: userRole
-        });
-      })
+      this._authService.signUp(email, password)
+        .then(userCredential => {
+          // Handle successful signup
+          const uid = userCredential.user?.uid;
+          this._snackbar.openSnackbar(`Successfully Created account as a ${userRole}`, 'close');
+          this.allreadyHaveAccount = !this.allreadyHaveAccount;
+          this._firestore.collection('users').doc(uid).set({
+            role: userRole
+          });
+        })
+        .catch(
+          err => {
+            this._snackbar.openSnackbar(err.code, "Close")
+          }
+        )
     }
   }
   onLogin(f: NgForm) {
