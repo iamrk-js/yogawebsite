@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { AuthService } from './services/auth.service';
 import { Router } from '@angular/router';
+import { LoaderService } from './services/loader.service';
 
 @Component({
   selector: 'app-root',
@@ -9,14 +10,21 @@ import { Router } from '@angular/router';
 })
 export class AppComponent implements OnInit {
   title = 'yoga';
-  isLogedIn : boolean = false;
+  isLogedIn : boolean = true;
+  isLoading !: boolean;
   @ViewChild("sidenav") sidenav:any
-  constructor(private _authService : AuthService, private _router : Router){
+  constructor(
+    private _authService : AuthService,
+     private _router : Router,
+     private _loaderService : LoaderService){
 
   }
   ngOnInit(): void {
     this._authService.logInStatus.subscribe(res => {
       this.isLogedIn = res
+    })
+    this._loaderService.loadingStatus.subscribe(res => {
+      this.isLoading = res;
     })
   }
   logOut(){

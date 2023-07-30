@@ -16,8 +16,17 @@ import { MatSelectModule } from '@angular/material/select';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 
 
+import { MatDatepickerModule } from "@angular/material/datepicker";
+import {  MatDialogModule } from "@angular/material/dialog";
 
-const matModules = [  MatSidenavModule,
+import { MatPaginatorModule } from "@angular/material/paginator";
+import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
+
+import { MatSortModule } from "@angular/material/sort";
+import { MatTableModule } from "@angular/material/table";
+
+
+const matModules = [MatDatepickerModule,MatProgressSpinnerModule,MatPaginatorModule,MatTableModule, MatSortModule, MatSidenavModule,
   MatToolbarModule,
   MatIconModule,
   MatButtonModule,
@@ -30,7 +39,7 @@ const matModules = [  MatSidenavModule,
   MatInputModule,
   MatRadioModule,
   MatSelectModule,
-  MatSnackBarModule]
+  MatSnackBarModule, MatDialogModule]
 @NgModule({
   declarations: [],
   imports: [

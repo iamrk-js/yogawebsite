@@ -1,7 +1,7 @@
 <mat-sidenav-container fullscreen>
   <mat-sidenav #sidenav  *ngIf="isLogedIn">
     <mat-nav-list (click)="sidenav.close()">
-      <a mat-list-item >
+      <a mat-list-item routerLink="/teacherDashboard">
         <mat-icon>
           library_books
         </mat-icon>
@@ -15,6 +15,15 @@
         </mat-icon>
         <span>
           About
+        </span>
+      </a>
+
+      <a mat-list-item routerLink="/addnewcourse">
+        <mat-icon>
+          add
+        </mat-icon>
+        <span>
+          Add Course
         </span>
       </a>
      
@@ -39,7 +48,7 @@
   </div>
   
 <div>
-  <a mat-button href="javascript:;" [matMenuTriggerFor]="dropDown">
+  <!-- <a mat-button href="javascript:;" [matMenuTriggerFor]="dropDown">
     Dropdown
   </a>
   <mat-menu #dropDown>
@@ -49,7 +58,7 @@
     <button mat-menu-item routerLink="/about">
       About
     </button>
-  </mat-menu>
+  </mat-menu> -->
   
   <a routerLink="/" mat-button (click)="logOut()">
     <mat-icon>account_circle</mat-icon> 
@@ -58,7 +67,7 @@
 </div>
  
   </mat-toolbar>
-  <div class="container mt-4">
+  <div class="container-fluid mt-4">
     <div class="row">
       <div class="col-sm-12">
         <router-outlet></router-outlet>
@@ -66,3 +75,9 @@
     </div>
   </div>
 </mat-sidenav-container>
+
+<div class="loader" *ngIf="isLoading">
+  <div class="spinner-border text-success" role="status">
+    <span class="sr-only">Loading...</span>
+  </div>
+</div>

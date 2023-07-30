@@ -1,0 +1,13 @@
+.formContainer{
+    background-color: rgb(245 245 245 / 80%);
+    padding: 30px;
+    mat-form-field {
+        display: block;
+        width: 100%;
+    }
+    textarea {
+        height: 100px;
+        resize: vertical;
+    }
+}
+
