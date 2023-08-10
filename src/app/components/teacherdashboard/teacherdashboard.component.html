@@ -1,25 +1,39 @@
 <div class="row">
-    <div class="col-12 text-center">
-        <h1 class="pri-header">
-            All Courses
-        </h1>
-    </div>
+  <div class="col-12 text-center">
+    <h1 class="pri-header">All Courses</h1>
+  </div>
 </div>
 
 <div class="container">
-    
-<div class="row">
-    <div class="col-md-4">
-        <div class="card">
-           <figure>
-            <img src="https://cdn.yogajournal.com/wp-content/uploads/2021/11/Extended-Side-Angle_Andrew-Clark.jpg?crop=1:1&width=700" alt="">
-            <figcaption>
-                <h4>Yoga</h4>
-            </figcaption>
-           </figure>
+  <div class="row">
+    <div class="col-md-4" *ngFor="let course of allCourses">
+      <div class="card yogaCard">
+        <figure>
+          <img [src]="course.courseImg" alt="" />
+          <figcaption class="p-4">
+            <h4>{{ course.courseName }}</h4>
+            <p class="description m-0">
+              {{ course.courseDescription }}
+            </p>
+          </figcaption>
+        </figure>
+        <div class="card-footer d-flex justify-content-between">
+          <button
+            class="btn-lg"
+            mat-raised-button
+            color="primary"
+            [routerLink]="['/editcourse', course.id]"
+          >
+            Edit Course
+          </button>
+          <button class="btn-lg"
+           mat-raised-button color="warn">
+            Remove Course
+          </button>
         </div>
+      </div>
     </div>
-    <div class="col-md-4">
+    <!-- <div class="col-md-4">
         <div class="card">
            <figure>
             <img src="https://cdn.yogajournal.com/wp-content/uploads/2007/08/Half-Lord-of-the-Fishes-Mod-1_Andrew-Clark_1.jpg?crop=1:1&width=700" alt="">
@@ -49,6 +63,6 @@
             </figcaption>
            </figure>
         </div>
-    </div>
-</div>
+    </div> -->
+  </div>
 </div>

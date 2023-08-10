@@ -16,6 +16,7 @@ const routes: Routes = [
   { path: "studentsDashboard", canActivate: [AuthGuard], component: StudentdashboardComponent },
   { path: "about", canActivate: [AuthGuard], component: AboutComponent },
   { path: "addnewcourse", canActivate: [AuthGuard], component: AddcourseComponent },
+  { path: "editcourse/:courseId", canActivate: [AuthGuard], component: AddcourseComponent },
 ];
 
 @NgModule({

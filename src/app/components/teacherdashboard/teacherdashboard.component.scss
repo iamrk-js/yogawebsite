@@ -1,7 +1,44 @@
-.card{
+.yogaCard{
     margin-bottom: 20px;
-    img{
-        width: 100%;
+    figure{
+        position: relative;
+        margin: 0;
+        overflow: hidden;
+        height: 350px;
+        img{
+            height: 100%;
+            width: 100%;
+            object-fit: cover;
+        }
+        h4 {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 10px;
+            font-size: 33px !important;
+            margin: 0;
+           background-color: rgba(255,255,255,.6);
+        }
+        .description {
+            position: absolute;
+            top: 110%;
+            background: #fff;
+            left: 0;
+            width: 100%;
+            overflow-y: auto;
+            transition: all .6s ease-in-out;
+            height: 60%;
+            padding: 20px;
+        }
+    }   
+
+    &:hover, &:focus{
+        .description{
+            top: 40% !important;
+
+        }
     }
-}
+
+}   
 
