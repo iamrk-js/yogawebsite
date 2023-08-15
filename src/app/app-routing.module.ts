@@ -11,21 +11,50 @@ import { UserroleGuard } from './services/userrole.gaurd';
 
 const routes: Routes = [
   {
-    path: "", component: AuthComponent
+    path: '',
+    component: AuthComponent,
   },
-  { path: "teacherDashboard", canActivate: [AuthGuard], component: TeacherdashboardComponent },
-  { path: "studentsDashboard", canActivate: [AuthGuard], component: StudentdashboardComponent },
-  { path: "about", canActivate: [AuthGuard, UserroleGuard],
-  data: {
-    userRole: "student"
+  {
+    path: 'teacherDashboard',
+    canActivate: [AuthGuard, UserroleGuard],
+    data: {
+      userRole: 'teacher',
+    },
+    component: TeacherdashboardComponent,
   },
-  component: AboutComponent },
-  { path: "addnewcourse", canActivate: [AuthGuard], component: AddcourseComponent },
-  { path: "editcourse/:courseId", canActivate: [AuthGuard], component: AddcourseComponent },
+  {
+    path: 'studentsDashboard',
+    canActivate: [AuthGuard, UserroleGuard],
+    data: {
+      userRole: 'student',
+    },
+    component: StudentdashboardComponent,
+  },
+  {
+    path: 'about',
+    canActivate: [AuthGuard, UserroleGuard],
+    data: {
+      userRole: 'student',
+    },
+    component: AboutComponent,
+  },
+  {
+    path: 'addnewcourse',
+    canActivate: [AuthGuard, UserroleGuard],
+    data: {
+      userRole: 'teacher',
+    },
+    component: AddcourseComponent,
+  },
+  {
+    path: 'editcourse/:courseId',
+    canActivate: [AuthGuard],
+    component: AddcourseComponent,
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

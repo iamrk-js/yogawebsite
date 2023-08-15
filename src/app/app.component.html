@@ -1,7 +1,19 @@
 <mat-sidenav-container fullscreen>
-  <mat-sidenav #sidenav  *ngIf="isLogedIn">
+  <mat-sidenav #sidenav  *ngIf="isLogedIn ">
     <mat-nav-list (click)="sidenav.close()">
-      <a mat-list-item routerLink="/teacherDashboard">
+      <a mat-list-item
+      *ngIf="userRole === 'teacher'"
+      routerLink="/teacherDashboard">
+        <mat-icon>
+          library_books
+        </mat-icon>
+        <span>
+          Courses
+        </span>
+      </a>
+      <a mat-list-item
+      *ngIf="userRole === 'student'"
+      routerLink="/studentsDashboard">
         <mat-icon>
           library_books
         </mat-icon>
@@ -20,7 +32,9 @@
         </span>
       </a>
 
-      <a mat-list-item routerLink="/addnewcourse">
+      <a mat-list-item 
+      *ngIf="userRole === 'teacher'"
+      routerLink="/addnewcourse">
         <mat-icon>
           add
         </mat-icon>
