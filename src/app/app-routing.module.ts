@@ -7,6 +7,7 @@ import { StudentdashboardComponent } from './components/studentdashboard/student
 import { AuthGuard } from './services/authgaurd.service';
 import { AboutComponent } from './components/about/about.component';
 import { AddcourseComponent } from './components/addcourse/addcourse.component';
+import { UserroleGuard } from './services/userrole.gaurd';
 
 const routes: Routes = [
   {
@@ -14,7 +15,11 @@ const routes: Routes = [
   },
   { path: "teacherDashboard", canActivate: [AuthGuard], component: TeacherdashboardComponent },
   { path: "studentsDashboard", canActivate: [AuthGuard], component: StudentdashboardComponent },
-  { path: "about", canActivate: [AuthGuard], component: AboutComponent },
+  { path: "about", canActivate: [AuthGuard, UserroleGuard],
+  data: {
+    userRole: "student"
+  },
+  component: AboutComponent },
   { path: "addnewcourse", canActivate: [AuthGuard], component: AddcourseComponent },
   { path: "editcourse/:courseId", canActivate: [AuthGuard], component: AddcourseComponent },
 ];

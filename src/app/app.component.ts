@@ -12,6 +12,7 @@ export class AppComponent implements OnInit {
   title = 'yoga';
   isLogedIn : boolean = true;
   isLoading !: boolean;
+  userRole !:string;
   @ViewChild("sidenav") sidenav:any
   constructor(
     private _authService : AuthService,
@@ -20,6 +21,7 @@ export class AppComponent implements OnInit {
 
   }
   ngOnInit(): void {
+    this.userRole = localStorage.getItem('userRole')!
     this._authService.logInStatus.subscribe(res => {
       this.isLogedIn = res
     })

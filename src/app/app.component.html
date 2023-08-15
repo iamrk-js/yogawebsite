@@ -9,7 +9,9 @@
           Courses
         </span>
       </a>
-      <a mat-list-item routerLink="/about">
+      <a mat-list-item routerLink="/about" 
+      *ngIf="userRole === 'student'"
+      >
         <mat-icon>
           question_answer
         </mat-icon>
