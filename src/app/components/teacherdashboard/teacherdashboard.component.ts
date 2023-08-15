@@ -18,5 +18,11 @@ export class TeacherdashboardComponent implements OnInit {
         this.allCourses = res;
       })
   }
-
+  onCourseRemove(id:any){
+    this._coursesService.deleteCourse(id)
+      .subscribe(res => {
+        console.log(res);
+        this.allCourses = this.allCourses.filter(course => course.id !== id)
+      })
+  }
 }

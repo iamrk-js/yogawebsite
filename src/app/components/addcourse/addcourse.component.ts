@@ -61,7 +61,7 @@ export class AddcourseComponent implements OnInit {
     if(this.courseForm.valid){
       let obj = {...this.courseForm.value, id : this.courseId};
       console.log(obj)
-      this._coursesService.updatePost(obj)
+      this._coursesService.updateCourse(obj)
         .subscribe(res => {
           console.log(res)
           this._router.navigate(['/teacherDashboard'])

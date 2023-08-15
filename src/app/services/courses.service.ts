@@ -48,8 +48,13 @@ export class CoursesService {
     return this._http.get<any>(courseUrl);
   }
 
-  updatePost(course: any): Observable<any> {
+  updateCourse(course: any): Observable<any> {
     let updateUrl = `${this.baseUrl}/courses/${course.id}.json`;
     return this._http.patch<any>(updateUrl, course);
+  }
+
+  deleteCourse(id: string): Observable<any> {
+    let deleteurl = `${this.baseUrl}/courses/${id}.json`
+    return this._http.delete(deleteurl)
   }
 }
