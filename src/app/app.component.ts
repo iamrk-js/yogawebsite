@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { AuthService } from './services/auth.service';
 import { Router } from '@angular/router';
 import { LoaderService } from './services/loader.service';
@@ -8,8 +8,9 @@ import { LoaderService } from './services/loader.service';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent implements OnInit {
+export class AppComponent implements OnInit, OnDestroy {
   title = 'yoga';
+  cartCount : number = 0;
   isLogedIn : boolean = true;
   isLoading !: boolean;
   userRole !:string;
@@ -32,6 +33,7 @@ export class AppComponent implements OnInit {
   logOut(){
     this._authService.logout()
     .then(() => {
+      localStorage.removeItem('userRole');
       this._router.navigate(['/'])        
     })
     .catch((error) => {
@@ -41,5 +43,9 @@ export class AppComponent implements OnInit {
 
   toggleSideNav(){
     this.sidenav.open()
+  }
+
+  ngOnDestroy(): void {
+    this.userRole  = ''
   }
 }
