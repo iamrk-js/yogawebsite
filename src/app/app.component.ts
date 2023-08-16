@@ -11,7 +11,7 @@ import { LoaderService } from './services/loader.service';
 export class AppComponent implements OnInit, OnDestroy {
   title = 'yoga';
   cartCount : number = 0;
-  isLogedIn : boolean = true;
+  isLogedIn : boolean = false;
   isLoading !: boolean;
   userRole !:string;
   @ViewChild("sidenav") sidenav:any
@@ -22,13 +22,15 @@ export class AppComponent implements OnInit, OnDestroy {
 
   }
   ngOnInit(): void {
-    this.userRole = localStorage.getItem('userRole')!
+    
     this._authService.logInStatus.subscribe(res => {
-      this.isLogedIn = res
+      this.isLogedIn = res;
+      this.userRole = localStorage.getItem('userRole')!
     })
     this._loaderService.loadingStatus.subscribe(res => {
       this.isLoading = res;
     })
+   
   }
   logOut(){
     this._authService.logout()
