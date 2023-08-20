@@ -1,13 +1,13 @@
 export const environment = {
   production: true,
   firebase: {
-    apiKey: "AIzaSyBjP_4XMf3NUER5SLmFQftEe88fP1CqiM4",
-    authDomain: "yoga-d7bed.firebaseapp.com",
-    databaseURL: "https://yoga-d7bed-default-rtdb.firebaseio.com",
-    projectId: "yoga-d7bed",
-    storageBucket: "yoga-d7bed.appspot.com",
-    messagingSenderId: "143587077757",
-    appId: "1:143587077757:web:a9e1a3c074a8ce1b780b14"
+    apiKey: "AIzaSyDv79SAmyBoHXFnFZ33dC5CrN7KX1ltDbI",
+  authDomain: "yoga-webapp.firebaseapp.com",
+  projectId: "yoga-webapp",
+  storageBucket: "yoga-webapp.appspot.com",
+  messagingSenderId: "913856739164",
+  appId: "1:913856739164:web:7e94cfa1237779e1af3399",
+  measurementId: "G-DVMR91MVXD"
   },
-  baseUrl : `https://yoga-d7bed-default-rtdb.firebaseio.com`
+  baseUrl : `https://yoga-webapp-default-rtdb.firebaseio.com`
 };
