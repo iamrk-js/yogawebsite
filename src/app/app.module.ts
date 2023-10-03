@@ -9,12 +9,14 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './material/material.module';
 import { AuthComponent } from './components/auth/auth.component';
-import { FormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { YogaDashboardComponent } from './components/yoga-dashboard/yoga-dashboard.component';
 import { StudentdashboardComponent } from './components/studentdashboard/studentdashboard.component';
 import { TeacherdashboardComponent } from './components/teacherdashboard/teacherdashboard.component';
 import { AboutComponent } from './components/about/about.component';
+import { AddcourseComponent } from './components/addcourse/addcourse.component';
+import { AuthInterceptorService } from './services/auth-interceptor.service';
 
 @NgModule({
   declarations: [
@@ -23,7 +25,8 @@ import { AboutComponent } from './components/about/about.component';
     YogaDashboardComponent,
     StudentdashboardComponent,
     TeacherdashboardComponent,
-    AboutComponent
+    AboutComponent,
+    AddcourseComponent
   ],
   imports: [
     BrowserModule,
@@ -33,9 +36,14 @@ import { AboutComponent } from './components/about/about.component';
     FormsModule,
     HttpClientModule,
     AngularFireModule.initializeApp(environment.firebase),
-    AngularFireAuthModule
+    AngularFireAuthModule,
+    ReactiveFormsModule
   ],
-  providers: [],
+  providers: [ {
+    provide : HTTP_INTERCEPTORS,
+    useClass : AuthInterceptorService,
+    multi : true
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

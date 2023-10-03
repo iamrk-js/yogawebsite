@@ -1,0 +1,73 @@
+<h1 class="pri-header text-center"  *ngIf="!isInEditMode">Add New Yoga Course</h1>
+<h1 class="pri-header text-center"  *ngIf="isInEditMode">Update Yoga Course</h1>
+
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-md-6 offset-md-3">
+      <form class="formContainer" (ngSubmit)="onCourseCreate()">
+        <mat-dialog-content [formGroup]="courseForm">
+          <mat-form-field>
+            <input
+              matInput
+              placeholder="Course Title"
+              formControlName="courseName"
+            />
+          </mat-form-field>
+          <mat-form-field>
+            <input
+              matInput
+              placeholder="Course Image Link"
+              formControlName="courseImg"
+            />
+          </mat-form-field>
+          <mat-form-field>
+            <input
+              matInput
+              placeholder="Course Price"
+              formControlName="coursePrice"
+            />
+          </mat-form-field>
+          <mat-form-field>
+            <input
+              matInput
+              placeholder="Course Duration"
+              formControlName="courseDuration"
+            />
+          </mat-form-field>
+          <mat-form-field>
+            <textarea
+              matInput
+              placeholder="Course Description"
+              formControlName="courseDescription"
+            >
+            </textarea>
+          </mat-form-field>
+        </mat-dialog-content>
+
+        <mat-dialog-actions class="d-flex w-100 justify-content-end">
+          <button
+            *ngIf="!isInEditMode"
+            mat-raised-button
+            color="primary"
+            #saveButton
+            [disabled]="courseForm.invalid"
+            type="submit"
+          >
+            Save
+          </button>
+          <button
+            *ngIf="isInEditMode"
+            mat-raised-button
+            color="primary"
+            #updateButton
+            [disabled]="courseForm.invalid"
+            type="button"
+            (click)="onPostUpdate()"
+          >
+            Update
+          </button>
+        </mat-dialog-actions>
+      </form>
+    </div>
+  </div>
+</div>

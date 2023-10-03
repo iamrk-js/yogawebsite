@@ -1,23 +1,35 @@
 <mat-sidenav-container fullscreen>
-  <mat-sidenav #sidenav  *ngIf="isLogedIn">
+  <mat-sidenav #sidenav *ngIf="isLogedIn">
     <mat-nav-list (click)="sidenav.close()">
-      <a mat-list-item >
-        <mat-icon>
-          library_books
-        </mat-icon>
-        <span>
-          Courses
-        </span>
-      </a>
-      <a mat-list-item routerLink="/about">
-        <mat-icon>
-          question_answer
-        </mat-icon>
-        <span>
-          About
-        </span>
-      </a>
-     
+      <ng-container *ngIf="userRole === 'teacher'">
+        <a mat-list-item routerLink="/teacherDashboard">
+          <mat-icon> library_books </mat-icon>
+          <span> Courses </span>
+        </a>
+        <a
+          mat-list-item
+          *ngIf="userRole === 'teacher'"
+          routerLink="/addnewcourse"
+        >
+          <mat-icon> add </mat-icon>
+          <span> Add Course </span>
+        </a>
+      </ng-container>
+      <ng-container *ngIf="userRole === 'student'">
+        <a
+          mat-list-item
+          *ngIf="userRole === 'student'"
+          routerLink="/studentsDashboard"
+        >
+          <mat-icon> library_books </mat-icon>
+          <span> Courses </span>
+        </a>
+        <a mat-list-item routerLink="/about" *ngIf="userRole === 'student'">
+          <mat-icon> question_answer </mat-icon>
+          <span> About </span>
+        </a>
+      </ng-container>
+
       <!-- <a mat-list-item  (click)="logOut()">
         <mat-icon>
           account_circle
@@ -28,18 +40,15 @@
       </a> -->
     </mat-nav-list>
   </mat-sidenav>
-  <mat-toolbar color="primary"  *ngIf="isLogedIn">
-  <div>
-    <button mat-icon-button  (click)="toggleSideNav()">
-      <mat-icon>
-        menu
-      </mat-icon>
-     
-    </button>
-  </div>
-  
-<div>
-  <a mat-button href="javascript:;" [matMenuTriggerFor]="dropDown">
+  <mat-toolbar color="primary" *ngIf="isLogedIn">
+    <div>
+      <button mat-icon-button (click)="toggleSideNav()">
+        <mat-icon> menu </mat-icon>
+      </button>
+    </div>
+
+    <div>
+      <!-- <a mat-button href="javascript:;" [matMenuTriggerFor]="dropDown">
     Dropdown
   </a>
   <mat-menu #dropDown>
@@ -49,16 +58,18 @@
     <button mat-menu-item routerLink="/about">
       About
     </button>
-  </mat-menu>
-  
-  <a routerLink="/" mat-button (click)="logOut()">
-    <mat-icon>account_circle</mat-icon> 
-    Log Out
-  </a>
-</div>
- 
+  </mat-menu> -->
+      <a href="javascript:;" mat-button>
+        <mat-icon>shopping_cart</mat-icon>
+        {{ cartCount }}
+      </a>
+      <a routerLink="/" mat-button (click)="logOut()">
+        <mat-icon>account_circle</mat-icon>
+        Log Out
+      </a>
+    </div>
   </mat-toolbar>
-  <div class="container mt-4">
+  <div class="container-fluid mt-4">
     <div class="row">
       <div class="col-sm-12">
         <router-outlet></router-outlet>
@@ -66,3 +77,9 @@
     </div>
   </div>
 </mat-sidenav-container>
+
+<div class="loader" *ngIf="isLoading">
+  <div class="spinner-border text-success" role="status">
+    <span class="sr-only">Loading...</span>
+  </div>
+</div>
